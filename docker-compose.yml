@@ -1,39 +1,38 @@
-version: "3.8"
-
 services:
-  postgres:
-    image: postgres:latest
-    restart: always
-    environment:
-      POSTGRES_DB: property_db
-      POSTGRES_USER: property_user
-      POSTGRES_PASSWORD: property_pass
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-  redis:
-    image: redis:latest
-    restart: always
-    ports:
-      - "6379:6379"
-
   web:
     build: .
-    command: >
-      sh -c "python manage.py migrate --noinput &&
-             python manage.py runserver 0.0.0.0:8000"
+    container_name: alx-backend-caching_property_listings-web
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/code
+      - .:/app
     ports:
       - "8000:8000"
-    env_file:
-      - .env
     depends_on:
       - postgres
       - redis
+    env_file:
+      - .env
 
-# 🟢 Important: `volumes` should be at root level, not under `services`
+  postgres:
+    image: postgres:latest
+    container_name: alx-backend-caching_property_listings-postgres
+    environment:
+      POSTGRES_DB: property_listings
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:latest
+    container_name: alx-backend-caching_property_listings-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
 volumes:
-  pgdata:
+  postgres_data:
+  redis_data:
