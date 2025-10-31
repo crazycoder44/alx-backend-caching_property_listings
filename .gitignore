@@ -1,0 +1,76 @@
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# -----------------------------
+# Virtual Environment
+# -----------------------------
+venv/
+env/
+ENV/
+.venv/
+
+# -----------------------------
+# Django
+# -----------------------------
+*.log
+*.pot
+*.pyc
+db.sqlite3
+staticfiles/
+media/
+*.mo
+
+# Local environment settings
+.env
+
+# -----------------------------
+# VSCode / IDEs
+# -----------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# -----------------------------
+# Docker
+# -----------------------------
+# Ignore volumes, intermediate containers, etc.
+*.pid
+*.seed
+*.bak
+*.tar
+*.gz
+*.zip
+
+# Byte-compiled / cache
+__pycache__/
+
+# Docker / Compose artifacts
+*.pid
+*.seed
+*.bak
+*.tar
+*.gz
+*.zip
+
+# Optional Docker build cache and environment
+.docker/
+docker-compose.override.yml
+
+# -----------------------------
+# OS generated files
+# -----------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
